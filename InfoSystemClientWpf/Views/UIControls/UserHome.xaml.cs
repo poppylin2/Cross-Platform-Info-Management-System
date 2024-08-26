@@ -30,7 +30,7 @@ namespace 软件系统客户端Wpf.Views
 
         private void EmailButton_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("mailto://hsl200909@163.com");
+            Process.Start("mailto://poppy.linpy@gmail.com");
         }
 
         private void GithubButton_OnClick(object sender, RoutedEventArgs e)
