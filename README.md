@@ -58,13 +58,13 @@ If the server is hosted in the cloud, this allows for anytime, anywhere interact
 ## 🚗 Getting Started
 <ul> <li>Rebuild the <b>CommonLibrary</b> project.</li> <li>Ensure that the <b>ServerIp</b> property of the <b>UserClient</b> class in the <b>UserClient.cs</b> file of the <b>ClientsLibrary</b> project is set to 127.0.0.1. If not, modify it.</li> <li>Rebuild the <b>ClientsLibrary</b> project.</li> <li>Rebuild and run the <b>ServerTemplate</b> executable.</li> <li>Select the client version you want to debug, for example, start the <b>InfoSystemClientWinform</b> project for WinForms.</li> <li>Log in using the default account: admin, password: 123456.</li> <li>You can now experience all the features.</li> </ul> 
 
-## Secondary Development
+## 🦄 Secondary Development
 Based on this template, secondary development can be easily carried out. Some examples are as follows (feel free to contribute):
 <ul> <li>A SCADA system for real-time monitoring and control, easily enabling one-to-many synchronous monitoring.</li> <li>A project management system for department personnel.</li> <li>An equipment management system for managing equipment records and archives.</li> <li>An ERP system for managing spare parts and inventory.</li> <li>Systems that require complex data interaction between multiple clients.</li> 
 </ul> 
-......and more！
-
-When conducting secondary development, special attention should be given to modifying parameters in the `UserSystem.cs` file in the **CommonLibrary** project according to actual needs.
+......and more！<br>
+<br>
+NOTE： When conducting secondary development, special attention should be given to modifying parameters in the `UserSystem.cs` file in the **CommonLibrary** project according to actual needs.
 
 
 ## 🤖 Disclaimer
