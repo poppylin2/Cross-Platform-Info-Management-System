@@ -1,0 +1,70 @@
+﻿@using  软件系统浏览器模版.Models
+
+@{
+    ViewBag.Title = "AccountDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    CommonLibrary.UserAccount account = ViewData[SessionItemsDescription.UserAccount] as CommonLibrary.UserAccount;
+}
+
+<h2>账户详细信息</h2>
+<table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>属性</th>
+                <th>信息</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">1</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountName</td>
+                <td>@account.UserName</td>
+            </tr>
+            <tr>
+                <th scope="row">2</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountPassword</td>
+                <td>********</td>
+            </tr>
+            <tr>
+                <th scope="row">3</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountAlias</td>
+                <td>@account.NameAlias</td>
+            </tr>
+            <tr>
+                <th scope="row">4</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountFactory</td>
+                <td>@account.Factory</td>
+            </tr>
+            <tr>
+                <th scope="row">5</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountGrade</td>
+                <td>@CommonLibrary.AccountGrade.GetDescription(account.Grade)</td>
+            </tr>
+            <tr>
+                <th scope="row">6</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountRegisterTime</td>
+                <td>@account.RegisterTime.ToString()</td>
+            </tr>
+            <tr>
+                <th scope="row">7</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountLoginFrequency</td>
+                <td>@account.LoginFrequency</td>
+            </tr>
+            <tr>
+                <th scope="row">8</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountLastLoginTime</td>
+                <td>@account.LastLoginTime</td>
+            </tr>
+            <tr>
+                <th scope="row">9</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountLastLoginIpAddress</td>
+                <td>@account.LastLoginIpAddress</td>
+            </tr>
+            <tr>
+                <th scope="row">10</th>
+                <td>@CommonLibrary.UserLocalization.Localization.AccountLastLoginWay</td>
+                <td>@account.LastLoginWay</td>
+            </tr>
+        </tbody>
+</table>

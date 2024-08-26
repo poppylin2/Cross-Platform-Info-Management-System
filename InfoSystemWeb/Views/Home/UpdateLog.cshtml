@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "UpdateLog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/Content/StyleAccordion.css" rel="stylesheet" />
+
+<h2>系统更新日志<small>历次版本详细信息</small></h2>
+
+<div class="container">
+    <div class="row">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+            @{
+                foreach (var v in ClientsLibrary.UserClient.HistoryVersions)
+                {
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <strong>V @v.VersionNum.ToString()</strong> 更新日志 @v.ReleaseDate.ToString("yyyy-MM-dd")
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <p>
+                                    @MvcHtmlString.Create(v.UpdateDetails.Replace("\r\n", "<br />").ToString())
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+    </div>
+</div>
