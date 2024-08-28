@@ -10,27 +10,27 @@ namespace 软件系统服务端模版
     static class Program
     {
         /// <summary>
-        /// 应用程序的主入口点。
+        /// main entrance
         /// </summary>
         [STAThread]
         static void Main()
         {
             Process process = Process.GetCurrentProcess();
-            //遍历应用程序的同名进程组
+            // Iterate through the group of processes with the same name as the application
             foreach (Process p in Process.GetProcessesByName(process.ProcessName))
             {
-                //不是同一进程则关闭刚刚创建的进程
+                // If it's not the same process, close the newly created process
                 if (p.Id != process.Id)
                 {
-                    //此处显示原先的窗口需要一定的时间，不然无法显示
+                    // Showing the original window may take some time, otherwise it won't be displayed
                     ShowWindowAsync(p.MainWindowHandle, 9);
                     SetForegroundWindow(p.MainWindowHandle);
                     System.Threading.Thread.Sleep(10);
-                    Application.Exit();//关闭当前的应用程序
+                    Application.Exit();// Close the current application
                     return;
                 }
             }
-            //设置应用程序的线程池数量，防止服务器端卡死状态，根据内存及CPU进行更改
+            // Set the thread pool size for the application to prevent server-side deadlock; adjust according to memory and CPU
             System.Threading.ThreadPool.SetMaxThreads(1000, 256);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

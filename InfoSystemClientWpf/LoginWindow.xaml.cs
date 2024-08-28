@@ -24,7 +24,7 @@ using System.IO;
 namespace 软件系统客户端Wpf
 {
     /// <summary>
-    /// LoginWindow.xaml 的交互逻辑
+    /// logic of LoginWindow.xaml
     /// </summary>
     public partial class LoginWindow : Window
     {
@@ -34,7 +34,7 @@ namespace 软件系统客户端Wpf
         {
             InitializeComponent();
 
-            // 加载本地保存的数据
+            // Load local data
             UserClient.JsonSettings.FileSavePath = AppDomain.CurrentDomain.BaseDirectory + @"JsonSettings.txt";
             UserClient.JsonSettings.LoadByFile();
         }
@@ -49,25 +49,25 @@ namespace 软件系统客户端Wpf
 
             TextBlockSoftName.Text = SoftResources.StringResouce.SoftName;
             TextBlockSoftVersion.Text = UserClient.CurrentVersion.ToString();
-            TextBlockSoftCopyright.Text = $"本软件著作权归{CommonLibrary.SoftResources.StringResouce.SoftCopyRight}所有";
+            TextBlockSoftCopyright.Text = $"Copyright by{CommonLibrary.SoftResources.StringResouce.SoftCopyRight}";
 
 
-            // 上次登录为7天以前则清除账户密码
+            // Clear account and password if the last login was more than 7 days ago
             if ((DateTime.Now - UserClient.JsonSettings.LoginTime).TotalDays < UserClient.JsonSettings.PasswordOverdueDays)
             {
-                //加载数据
+                // Load saved data
                 NameTextBox.Text = UserClient.JsonSettings.LoginName ?? "";
                 PasswordBox.Password = UserClient.JsonSettings.Password ?? "";
                 Remember.IsChecked = UserClient.JsonSettings.Password != "";
             }
 
-            //初始化输入焦点
+            // Initialize input focus
             if (UserClient.JsonSettings.Password != "") LoginButton.Focus();
             else if (UserClient.JsonSettings.LoginName != "") PasswordBox.Focus();
             else NameTextBox.Focus();
 
 
-            // 加载原先保存的主题配色
+            // Load the previously saved theme color scheme
             if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"Palette.txt"))
             {
                 using (StreamReader sr = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + @"Palette.txt", Encoding.UTF8))
@@ -86,23 +86,22 @@ namespace 软件系统客户端Wpf
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //启动线程登录
-            //验证输入
+
             if (string.IsNullOrEmpty(NameTextBox.Text))
             {
-                SetInformationString("请输入用户名");
+                SetInformationString("Enter the username");
                 NameTextBox.Focus();
                 return;
             }
 
             if (string.IsNullOrEmpty(PasswordBox.Password))
             {
-                SetInformationString("请输入密码");
+                SetInformationString("Enter the password");
                 PasswordBox.Focus();
                 return;
             }
 
-            SetInformationString("正在验证维护状态...");
+            SetInformationString("Maintenance status is being verified...");
             UISettings(false);
 
             UserName = NameTextBox.Text;
@@ -124,15 +123,15 @@ namespace 软件系统客户端Wpf
         private bool IsChecked = false;
 
         /// <summary>
-        /// 用于验证的后台线程
+        /// Background thread for account validation
         /// </summary>
         private Thread ThreadAccountLogin = null;
         /// <summary>
-        /// 用户账户验证的后台端
+        /// Backend for user account validation
         /// </summary>
         private void ThreadCheckAccount()
         {
-            //定义委托
+            //Define delegate
             Action<string> message_show = delegate (string message)
             {
                 Dispatcher.Invoke(new Action(() =>
@@ -144,16 +143,16 @@ namespace 软件系统客户端Wpf
             {
                 Dispatcher.Invoke(new Action(() =>
                 {
-                    //需要该exe支持，否则将无法是实现自动版本控制
+                    
                     string update_file_name = AppDomain.CurrentDomain.BaseDirectory + @"软件自动更新.exe";
                     try
                     {
                         System.Diagnostics.Process.Start(update_file_name);
-                        Environment.Exit(0);//退出系统
+                        Environment.Exit(0);
                     }
                     catch
                     {
-                        MessageBox.Show("更新程序启动失败，请检查文件是否丢失，联系管理员获取。");
+                        MessageBox.Show("Update program failed to start. Please check if the file is missing and contact the administrator for further assistance.");
                     }
                 }));
             };
@@ -166,7 +165,7 @@ namespace 软件系统客户端Wpf
             };
 
 
-            // 启动密码验证
+            // Start password validation
             if (AccountLogin.AccountLoginServer(
                 message_show,
                 start_update,
@@ -176,7 +175,7 @@ namespace 软件系统客户端Wpf
                 IsChecked,
                 "wpf"))
             {
-                //启动主窗口
+                // Launch the main window if validation is successful
                 Dispatcher.Invoke(new Action(() =>
                 {
                     DialogResult = true;

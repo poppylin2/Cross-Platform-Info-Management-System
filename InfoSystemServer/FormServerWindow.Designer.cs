@@ -39,6 +39,7 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_version = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel_time = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.版本控制ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label_Count_Simplify = new System.Windows.Forms.Label();
             this.label_Count_Push = new System.Windows.Forms.Label();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -87,13 +87,13 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(196, 24);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(185, 24);
             this.toolStripStatusLabel1.Text = "Copyright by Poppy";
             // 
             // toolStripStatusLabel2
             // 
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(125, 24);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(108, 24);
             this.toolStripStatusLabel2.Text = "     Version: ";
             // 
             // toolStripStatusLabel_version
@@ -106,8 +106,14 @@
             // toolStripStatusLabel_time
             // 
             this.toolStripStatusLabel_time.Name = "toolStripStatusLabel_time";
-            this.toolStripStatusLabel_time.Size = new System.Drawing.Size(46, 24);
-            this.toolStripStatusLabel_time.Text = "时间";
+            this.toolStripStatusLabel_time.Size = new System.Drawing.Size(52, 24);
+            this.toolStripStatusLabel_time.Text = "Time";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(195, 24);
+            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
             // 
             // menuStrip1
             // 
@@ -228,7 +234,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 29);
             this.label3.TabIndex = 7;
-            this.label3.Text = "可登录";
+            this.label3.Text = "Loggable";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
@@ -259,7 +265,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(234, 74);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 24);
+            this.label2.Size = new System.Drawing.Size(161, 24);
             this.label2.TabIndex = 10;
             this.label2.Text = "System Messages";
             // 
@@ -268,7 +274,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 74);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 24);
+            this.label1.Size = new System.Drawing.Size(130, 24);
             this.label1.TabIndex = 9;
             this.label1.Text = "Active Clients:";
             // 
@@ -344,12 +350,6 @@
             this.label_Count_Push.TabIndex = 17;
             this.label_Count_Push.Text = "0";
             this.label_Count_Push.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(195, 24);
-            this.toolStripStatusLabel3.Text = "toolStripStatusLabel3";
             // 
             // FormServerWindow
             // 
