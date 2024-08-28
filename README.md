@@ -1,8 +1,7 @@
 
 # InfoHubX 
 [![Visual Studio](https://img.shields.io/badge/Visual%20Studio-2022-red.svg)](https://www.visualstudio.com/zh-hans/) [![Language](https://img.shields.io/badge/Language-C%23%207.0-orange.svg)](https://blogs.msdn.microsoft.com/dotnet/2016/08/24/whats-new-in-csharp-7-0/) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/dathlin/ClientServerProject/blob/master/LICENSE)
-## 🚀 Summary
-
+## 🚀 Introduction
 InfoHubX is an advanced Client-Server development framework designed to streamline the creation of small-to-medium sized info systems. The framework is engineered to support both desktop (computer-side) and web-based (web-side) full-platform templates, offering flexibility and scalability across different environments. InfoHubX includes a comprehensive suite of reusable components and function codes to handle network communication, client version control, account management, password modifications, announcement management, and other common system tasks.
 
 InfoHubX is particularly powerful due to its three client-side modes:
@@ -45,18 +44,20 @@ If the server is hosted in the cloud, this allows for anytime, anywhere interact
 
 ## 🎍 Environment
 <ul>
-<li>IDE: Visual Studio 2017
-<ul>
+<li>IDE: Visual Studio 2022</li>
 <li>winform server：.NET Framework 3.5</li>
 <li>winform client：.NET Framework 3.5</li>
 <li>wpf client： .NET Framework 4.5</li>
 <li>asp.net mvc server：.NET Framework 4.5</li>
 </ul>
-</li>
-</ul>
 
 ## 🚗 Getting Started
 <ul> <li>Rebuild the <b>CommonLibrary</b> project.</li> <li>Ensure that the <b>ServerIp</b> property of the <b>UserClient</b> class in the <b>UserClient.cs</b> file of the <b>ClientsLibrary</b> project is set to 127.0.0.1. If not, modify it.</li> <li>Rebuild the <b>ClientsLibrary</b> project.</li> <li>Rebuild and run the <b>ServerTemplate</b> executable.</li> <li>Select the client version you want to debug, for example, start the <b>InfoSystemClientWinform</b> project for WinForms.</li> <li>Log in using the default account: admin, password: 123456.</li> <li>You can now experience all the features.</li> </ul> 
+
+####    System Login Design
+<pre>
+<ol> <li>Status check: Detect the server's maintenance status. If the server is under maintenance, the reason for system login being unavailable is displayed.</li> <li>Account check: The server performs a thorough check on the login account, verifying whether the username exists, whether the password is correct, whether login is allowed, and recording login IP, time, and frequency.</li> <li>Version check: The server returns the latest version number. The client then decides whether to initiate an update based on its own needs.</li> <li>Parameter download: After passing the above checks, initialization data (e.g., announcement data) is sent to the client. You can also add your own data. The data is encapsulated in JSON, and the client can parse it according to the example.</li> <li>Once all checks pass, the client’s main interface program is launched. If any check or parameter download fails, login is denied, and the relevant error message is displayed.</li> </ol>
+</pre>
 
 ## 🦄 Secondary Development
 Based on this template, secondary development can be easily carried out. Some examples are as follows (feel free to contribute):
@@ -64,12 +65,9 @@ Based on this template, secondary development can be easily carried out. Some ex
 </ul> 
 ......and more！<br>
 <br>
-NOTE： When conducting secondary development, special attention should be given to modifying parameters in the `UserSystem.cs` file in the **CommonLibrary** project according to actual needs.
+NOTE： When conducting secondary development, special attention should be given to modifying parameters in the UserSystem.cs file in the CommonLibrary project according to actual needs.
 
 
 ## 🤖 Disclaimer
-<ul> <li>Uses the <a href="http://www.newtonsoft.com/json">json.net component</a>.</li> <li>The WPF template uses the open-source project <a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit">Material Design in XAML Toolkit</a>.</li> <li>File-sharing functionality icons are from <a href="http://fileicons.chromefans.org/">free file icons</a>.</li> </ul> <pre>
-
-#### System Login Design
-<ol> <li>Status check: Detect the server's maintenance status. If the server is under maintenance, the reason for system login being unavailable is displayed.</li> <li>Account check: The server performs a thorough check on the login account, verifying whether the username exists, whether the password is correct, whether login is allowed, and recording login IP, time, and frequency.</li> <li>Version check: The server returns the latest version number. The client then decides whether to initiate an update based on its own needs.</li> <li>Parameter download: After passing the above checks, initialization data (e.g., announcement data) is sent to the client. You can also add your own data. The data is encapsulated in JSON, and the client can parse it according to the example.</li> <li>Once all checks pass, the client’s main interface program is launched. If any check or parameter download fails, login is denied, and the relevant error message is displayed.</li> </ol>
+<ul> <li>Uses the <a href="http://www.newtonsoft.com/json">json.net component</a>.</li> <li>The WPF template uses the open-source project <a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit">Material Design in XAML Toolkit</a>.</li> <li>File-sharing functionality icons are from <a href="http://fileicons.chromefans.org/">free file icons</a>.</li> </ul> 
 
