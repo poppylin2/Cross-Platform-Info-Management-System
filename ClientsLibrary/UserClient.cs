@@ -9,6 +9,8 @@ using System.Net;
 using System.Drawing;
 using System.Windows.Forms;
 using Newtonsoft.Json.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace ClientsLibrary
 {
@@ -16,39 +18,42 @@ namespace ClientsLibrary
 
     /***********************************************************************************
      * 
-     *    说明：用来存储客户端全局的变量数据，好在任何界面都可以直达数据
-     *          专门放在这下面的数据是需要支持winform和wpf共同访问的
+     * Description: Used to store global client variable data, so data can be accessed 
+     *              from any interface.
+     *              The data placed here is specifically for shared access between 
+     *              WinForm and WPF.
      * 
      * 
      ***********************************************************************************/
 
 
     /// <summary>
-    /// 一个通用的用户客户端类, 包含了一些静态的资源
+    /// A generic user client class that contains some static resources.
     /// </summary>
     public class UserClient
     {
         /// <summary>
-        /// 客户端需要进行本地存储的信息日志
+        /// Log information that the client needs to store locally.
         /// </summary>
         public static JsonSettings JsonSettings = new JsonSettings();
 
 
         /// <summary>
-        /// 本软件的当前版本，用来验证更新的关键依据
+        /// The current version of the software, used as the key basis for validating updates.
         /// </summary>
         public static SystemVersion CurrentVersion { get; } = new SystemVersion("1.0.0.180429");
 
 
         /// <summary>
-        /// 服务器的IP地址，默认为127.0.0.1，可用于单机调试，
-        /// 云服务器端：117.48.203.204，注意，云端为最新版，客户端版本比较旧会调试失败
+        ///Server IP address, default is 127.0.0.1, for local debugging.
+        /// Cloud server address: 117.48.203.204. Note: The cloud version is the latest;
+        /// debugging with an outdated client version will fail.
         /// </summary>
-        public static string ServerIp { get; } = "127.0.0.1"; // 用于测试的云服务器地址
+        public static string ServerIp { get; } = "127.0.0.1"; // test the IP address of the cloud server
 
 
         /// <summary>
-        /// 系统的分厂信息
+        /// Information about the system's branches.
         /// </summary>
         public static List<string> SystemFactories { get; set; } = new List<string>();
 
@@ -56,40 +61,42 @@ namespace ClientsLibrary
 
 
         /// <summary>
-        /// 所有版本更新信息的对象
+        /// An object for all version update information.
         /// </summary>
         public static List<VersionInfo> HistoryVersions { get; } = new List<VersionInfo>
         {
-                // 写入所有的历史版本信息，这样就能在更新日志的界面查看到信息
+                // Write in all the historical version information, so it can be viewed in the update log interface.
+
                 new VersionInfo()
                 {
                     VersionNum = new SystemVersion("1.0.0"),
-                    ReleaseDate = new DateTime(2018, 5, 1), // 该版本发布的日期
+                    ReleaseDate = new DateTime(2018, 5, 1), // release date
                     UpdateDetails = new StringBuilder(
-                        "1.本系统第一版本正式发布使用。"+Environment.NewLine+
-                        "2.提供了多客户端用时在线的功能。"+Environment.NewLine+
-                        "3.支持个人的文件管理功能。"),
+                        "1. The first version of the system is officially released."+Environment.NewLine+
+                        "2. Provides multi-client simultaneous online functionality."+Environment.NewLine+
+                        "3. Supports personal file management features. "),
                 },
         };
 
 
         /// <summary>
-        /// 设置或获取系统的公告
+        /// Set or get the system's announcement.
         /// </summary>
         public static string Announcement { get; set; } = "";
         /// <summary>
-        /// 当前系统的登录账户
+        /// The currently logged-in user account of the system.
         /// </summary>
         public static UserAccount UserAccount { get; set; } = new UserAccount();
 
         /// <summary>
-        /// 服务器的时间，该时间与服务器同步，每隔10秒钟，防止客户端串改单机时间，可以作为各种时间条件判定
+        /// The server time, synchronized with the server every 10 seconds, 
+        /// preventing clients from changing the local time and can be used for various time condition judgments.
         /// </summary>
         public static DateTime DateTimeServer { get; set; } = DateTime.Now;
 
 
         /// <summary>
-        /// 用于访问服务器数据的网络对象类，必须修改这个端口参数，否则运行失败
+        /// A network object class used for accessing server data; you must change this port parameter, otherwise, it will fail to run.
         /// </summary>
         public static NetSimplifyClient Net_simplify_client { get; set; } = new NetSimplifyClient(ServerIp, UserSystem.Port_Second_Net)
         {
@@ -98,7 +105,7 @@ namespace ClientsLibrary
         };
 
         /// <summary>
-        /// 用于使用udp向服务器进行发送即时可丢失数据的对象
+        /// An object used to send instant, discardable data to the server using UDP.
         /// </summary>
         public static NetUdpClient Net_Udp_Client { get; set; } = new NetUdpClient(ServerIp, UserSystem.Port_Udp_Server)
         {
@@ -107,7 +114,7 @@ namespace ClientsLibrary
 
 
         /// <summary>
-        /// 检查当前账户是否有role角色的权限
+        /// Checks whether the current account has the role permissions.
         /// </summary>
         /// <param name="roleCode">角色名称</param>
         /// <returns></returns>
@@ -133,14 +140,14 @@ namespace ClientsLibrary
         }
 
         /// <summary>
-        /// 头像管理器
+        /// Avatar manager
         /// </summary>
         public static UserPortrait PortraitManager { get; set; }
 
 
 
         /// <summary>
-        /// 用于绝大部分用途的文件上传下载操作
+        /// file upload and download operations 
         /// </summary>
         public static IntegrationFileClient Net_File_Client { get; set; } = new IntegrationFileClient()
         {
@@ -150,7 +157,7 @@ namespace ClientsLibrary
         };
 
         /// <summary>
-        /// 目前仅仅用于上传客户端更新文件操作
+        /// Currently only used for uploading client update files.
         /// </summary>
         public static IntegrationFileClient Net_Update_Client { get; set; } = new IntegrationFileClient()
         {
@@ -161,7 +168,7 @@ namespace ClientsLibrary
 
 
         /// <summary>
-        /// 客户端的日志纪录对象
+        /// Client's log recording object.
         /// </summary>
         public static HslCommunication.LogNet.ILogNet LogNet { get; set; }
 
@@ -169,7 +176,7 @@ namespace ClientsLibrary
 
 
         /// <summary>
-        /// 用来处理客户端发生的未捕获的异常，将通过网络组件发送至服务器存储，用于更好的跟踪错误
+        /// Used to handle unhandled exceptions on the client side and send them to the server for better error tracking via network components.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -177,7 +184,7 @@ namespace ClientsLibrary
         {
             if (e.ExceptionObject is Exception ex)
             {
-                // 使用TCP方法传送回服务器
+                // Send back to the server using the TCP method
                 string info = HslCommunication.LogNet.LogNetManagment.GetSaveStringFromException(null, ex);
                 Net_simplify_client.ReadFromServer(CommonHeadCode.SimplifyHeadCode.异常消息, info);
             }
